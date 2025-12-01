@@ -17,7 +17,7 @@
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
         .hero p { font-size: 1.3rem; margin-bottom: 2rem; }
         .badge { display: inline-block; background: #ff6b6b; color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold; margin-bottom: 1rem; }
-        .cta-button { display: inline-block; background: #ff6b6b; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: transform 0.3s; }
+        .cta-button { display: inline-block; background: #ff6b6b; color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: transform 0.3s; cursor: pointer; border: none; }
         .cta-button:hover { transform: scale(1.05); }
         .services { padding: 80px 20px; background: #f8f9fa; }
         .services h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #667eea; }
@@ -30,14 +30,23 @@
         .price-card { background: white; border: 2px solid #667eea; padding: 30px; border-radius: 10px; text-align: center; }
         .price-card h3 { color: #667eea; margin-bottom: 1rem; }
         .price { font-size: 2rem; color: #ff6b6b; font-weight: bold; margin: 1rem 0; }
+        .buy-btn { background: #ff6b6b; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 1rem; }
+        .buy-btn:hover { background: #ff5252; }
+        .payment-section { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center; }
+        .payment-section h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+        .qr-container { max-width: 400px; margin: 2rem auto; background: white; padding: 20px; border-radius: 10px; }
+        .qr-container img { width: 100%; border-radius: 10px; }
+        .upi-input { width: 100%; max-width: 400px; padding: 10px; margin: 1rem auto; border: 2px solid white; border-radius: 5px; font-size: 1rem; }
+        .transaction-form { background: white; color: #333; padding: 30px; border-radius: 10px; max-width: 500px; margin: 2rem auto; }
+        .form-group { margin-bottom: 1rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .submit-btn { background: #667eea; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; }
+        .submit-btn:hover { background: #5568d3; }
         .contact { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center; }
         .contact h2 { font-size: 2.5rem; margin-bottom: 2rem; }
         .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin: 3rem 0; }
         .contact-item { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; }
-        .qr-section { background: white; padding: 40px 20px; text-align: center; }
-        .qr-section h3 { color: #667eea; margin-bottom: 2rem; font-size: 1.5rem; }
-        .qr-code { max-width: 300px; margin: 0 auto; }
-        .qr-code img { width: 100%; border: 3px solid #667eea; border-radius: 10px; }
         footer { background: #333; color: white; text-align: center; padding: 2rem; }
         @media (max-width: 768px) { .hero h1 { font-size: 2rem; } nav ul { gap: 1rem; } }
     </style>
@@ -49,6 +58,7 @@
             <ul>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#payment">Payment</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -60,7 +70,7 @@
             <h1>AyushBabaSMM</h1>
             <p>Professional Social Media Marketing Services</p>
             <p style="font-size: 1.1rem; margin-bottom: 2rem;">Starting from just ₹1</p>
-            <a href="https://wa.me/918585985811" class="cta-button">📱 Contact on WhatsApp</a>
+            <a href="#payment" class="cta-button">📱 Buy Now</a>
         </div>
     </section>
 
@@ -109,6 +119,7 @@
                         <li>✓ 1 Month Support</li>
                         <li>✓ Strategy Guide</li>
                     </ul>
+                    <button class="buy-btn" onclick="selectService('Instagram Growth', 99)">Buy Now</button>
                 </div>
                 <div class="price-card">
                     <h3>💎 Professional</h3>
@@ -120,6 +131,7 @@
                         <li>✓ Content Calendar</li>
                         <li>✓ Monthly Reports</li>
                     </ul>
+                    <button class="buy-btn" onclick="selectService('Facebook Marketing', 299)">Buy Now</button>
                 </div>
                 <div class="price-card">
                     <h3>👑 Premium</h3>
@@ -131,17 +143,51 @@
                         <li>✓ Dedicated Manager</li>
                         <li>✓ Custom Strategy</li>
                     </ul>
+                    <button class="buy-btn" onclick="selectService('TikTok Promotion', 799)">Buy Now</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="qr-section">
+    <section class="payment-section" id="payment">
         <div class="container">
-            <h3>📱 Scan to Connect</h3>
-            <p style="margin-bottom: 2rem; color: #666;">Scan QR code to contact us on WhatsApp</p>
-            <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://wa.me/918585985811" alt="WhatsApp QR Code">
+            <h2>💳 Make Payment</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Scan QR Code or Enter UPI ID</p>
+            
+            <div class="qr-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=8585985811@axl&pn=AyushBabaSMM&am=1&tn=SMM%20Service" alt="PhonePay QR Code">
+                <p style="margin-top: 1rem; color: #333;">Scan with PhonePay, Google Pay, or any UPI app</p>
+            </div>
+
+            <div class="transaction-form">
+                <h3 style="color: #667eea; margin-bottom: 1.5rem;">Enter Payment Details</h3>
+                <form onsubmit="submitPayment(event)">
+                    <div class="form-group">
+                        <label>Service Name:</label>
+                        <input type="text" id="serviceName" placeholder="e.g., Instagram Growth" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount (₹):</label>
+                        <input type="number" id="amount" placeholder="e.g., 99" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Transaction ID / UTR:</label>
+                        <input type="text" id="transactionId" placeholder="e.g., 123456789" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Name:</label>
+                        <input type="text" id="customerName" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email:</label>
+                        <input type="email" id="customerEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Phone:</label>
+                        <input type="tel" id="customerPhone" placeholder="Your phone number" required>
+                    </div>
+                    <button type="submit" class="submit-btn">✓ Confirm Payment</button>
+                </form>
             </div>
         </div>
     </section>
@@ -149,7 +195,7 @@
     <section class="contact" id="contact">
         <div class="container">
             <h2>Get Started Today!</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Minimum Fund: ₹1 to Start</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Minimum Fund: ₹1 to Start | Delivery: 12-24 Hours</p>
             <div class="contact-info">
                 <div class="contact-item">
                     <h3>📱 WhatsApp</h3>
@@ -171,5 +217,40 @@
     <footer>
         <p>&copy; 2025 AyushBabaSMM. All rights reserved. | Low Price Guarantee ✓</p>
     </footer>
+
+    <script>
+        function selectService(serviceName, amount) {
+            document.getElementById('serviceName').value = serviceName;
+            document.getElementById('amount').value = amount;
+            document.getElementById('payment').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitPayment(event) {
+            event.preventDefault();
+            
+            const serviceName = document.getElementById('serviceName').value;
+            const amount = document.getElementById('amount').value;
+            const transactionId = document.getElementById('transactionId').value;
+            
+            const customerName = document.getElementById('customerName').value;
+            const customerEmail = document.getElementById('customerEmail').value;
+            const customerPhone = document.getElementById('customerPhone').value;
+
+            // Send email notification
+            const emailBody = ;
+
+            // Send WhatsApp message
+            const whatsappMessage = ;
+            
+            // Show confirmation
+            alert();
+
+            // Send to WhatsApp
+            window.open(, '_blank');
+
+            // Reset form
+            document.querySelector('form').reset();
+        }
+    </script>
 </body>
 </html>
